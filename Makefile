@@ -11,13 +11,13 @@ OBJ_DIR		:=	build/
 
 # Files ------------------------------------------------------------------------
 FILES	:=	main.c ft_merge_sort.c ft_stack_utils.c ft_node_utils.c \
-			ft_validate_arguments.c
+			ft_validator_utils.c
 SRC		:=	$(addprefix $(SRC_DIR), $(FILES))
 OBJ		:=	$(addprefix $(OBJ_DIR), $(FILES:.c=.o))
 
 # Compiler ---------------------------------------------------------------------
 CC			:=	gcc
-DEBUG		:=	no
+DEBUG		:=	yes
 ifeq ($(DEBUG), yes)
 FLAG		:=	-g -W
 else

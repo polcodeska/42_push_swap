@@ -7,13 +7,13 @@
 typedef struct s_node
 {
     int value;
-    int index;
     int pos;
+    int index;
     int target_pos;
     int cost_a;
     int cost_b;
-    struct s_node *next;;
     struct s_node *prev;
+    struct s_node *next;;
 } t_node;
 
 typedef struct
@@ -26,35 +26,26 @@ typedef struct
 
 void ft_merge_sort(int arr[], int l, int r);
 
-// ft_validate_arguments.c
+// ft_validator_utils.c
 int ft_arguments_valid(char **clear_argv);
 int ft_count_values(char **clean_argv);
 int ft_is_argument_a_number(char *clean_argv);
-int ft_all_arguments_are_numbers(char **clean_argv);
+int ft_are_all_arguments_numbers(char **clean_argv);
 long ft_atol(char *str);
-int ft_all_arguments_are_integer(char **clean_argv);
+int ft_are_all_arguments_integer(char **clean_argv);
 int *ft_parse_argv_to_int_array(char **clean_argv);
-int ft_dublicates_found(char **clean_argv);
+int ft_are_dublicates_found(char **clean_argv);
 
 // ft_stack_utils.c
 void ft_init_stacks(t_stack *st_a, t_stack *st_b);
+void ft_fill_stack_on_start(t_stack *st, char **clean_argv);
+void ft_add_node_on_top(t_stack *st, t_node *nd);
+void ft_add_node_on_bottom(t_stack *st, t_node *nd);
+t_node *ft_pop_node_from_top(t_stack *st);
+t_node *ft_pop_node_from_bottom(t_stack *st);
+void ft_swap_first_nodes_on_stack(t_stack *st);
+void ft_rotate_stack(t_stack *st);
 
 // ft_node_utils.c
-void ft_init_nd(t_node *nd, int value, int index, int pos);
-void ft_set_nd_value(t_node *nd, int value);
-void ft_set_nd_index(t_node *nd, int index);
-void ft_set_nd_pos(t_node *nd, int pos);
-void ft_set_nd_target(t_node *nd, int target_pos);
-void ft_set_nd_cost_a(t_node *nd, int cost_a);
-void ft_set_nd_cost_b(t_node *nd, int cost_b);
-void ft_set_nd_next(t_node *nd, t_node *next);
-void ft_set_nd_prev(t_node *nd, t_node *prev);
-int ft_get_nd_value(t_node *nd);
-int ft_get_nd_index(t_node *nd);
-int ft_get_nd_pos(t_node *nd);
-int ft_get_nd_target_pos(t_node *nd);
-int ft_get_nd_cost_a(t_node *nd);
-int ft_get_nd_cost_b(t_node *nd);
-t_node *ft_get_nd_next(t_node *nd);
-t_node *ft_get_nd_prev(t_node *nd);
+void ft_init_nd(t_node *nd, int value, int pos);
 #endif

@@ -2,9 +2,9 @@
 
 int ft_arguments_valid(char **clean_argv)
 {
-	if (!ft_all_arguments_are_numbers(clean_argv) ||
-			!ft_all_arguments_are_integer(clean_argv) ||
-			ft_dublicates_found(clean_argv))
+	if (!ft_are_all_arguments_numbers(clean_argv) ||
+			!ft_are_all_arguments_integer(clean_argv) ||
+			ft_are_dublicates_found(clean_argv))
 	{
 		write(2, "Error\n", 6);
 		return (0);
@@ -35,7 +35,7 @@ int ft_is_argument_a_number(char *clean_argv)
     return (1);
 }
 
-int ft_all_arguments_are_numbers(char **clean_argv)
+int ft_are_all_arguments_numbers(char **clean_argv)
 {
 	while (*clean_argv)
 	{
@@ -62,7 +62,7 @@ long ft_atol(char *str)
 	return (sign * value);
 }
 
-int ft_all_arguments_are_integer(char **clean_argv)
+int ft_are_all_arguments_integer(char **clean_argv)
 {
 	long arg;
 
@@ -88,7 +88,7 @@ int *ft_parse_argv_to_int_array(char **clean_argv)
 	return (int_arr);
 }
 
-int ft_dublicates_found(char **clean_argv)
+int ft_are_dublicates_found(char **clean_argv)
 {
 	int *int_arr;
 	int value_count;
