@@ -29,17 +29,16 @@ void ft_push_swap(char **clean_argv, t_stack *st_a, t_stack *st_b)
 	if (ft_arguments_valid(clean_argv))
 	{
 		ft_init_stacks(st_a, st_b);
-		write(1, "Arguments valid\n", 16);
-		// TODO: Code here
 		ft_fill_stack_on_start(st_a, clean_argv);
-		printf("------------------ All nodes at start Stack A:\n");
-		ft_print_all_nodes_in_stack(st_a);
-		printf("------------------ All nodes at start Stack B:\n");
-		ft_print_all_nodes_in_stack(st_b);
-		ft_add_node_on_top(st_b, ft_pop_node_from_top(st_a));
-		ft_add_node_on_top(st_b, ft_pop_node_from_top(st_a));
-		ft_swap_first_nodes_on_stack(st_a);
-		/* ft_rotate_stack(st_a); */
+		if (ft_is_stack_sorted(st_a, ft_is_in_asc_order))
+			return ;
+		if (st_a->nd_count == 2)
+			ft_swap_first_nodes_on_stack(st_a);
+		else if (st_a->nd_count == 3)
+			ft_run_algo_for_three_values(st_a);
+		else
+			;
+			//ft_run_algo_for_more_than_three_values(st_a, st_b);
 		printf("------------------ Stack A:\n");
 		ft_print_all_nodes_in_stack(st_a);
 		printf("------------------ Stack B:\n");
@@ -77,16 +76,16 @@ void ft_print_node(t_node *nd)
 
 void ft_print_all_nodes_in_stack(t_stack *st)
 {
-	t_node *tmp_node;
+	t_node *nd;
 
-	tmp_node = st->first_nd;
-	if (tmp_node)
+	nd = st->first_nd;
+	if (nd)
 	{
-		while (tmp_node->next)
+		while (nd->next)
 		{
-			ft_print_node(tmp_node);
-			tmp_node = tmp_node->next;
+			ft_print_node(nd);
+			nd = nd->next;
 		}
-		ft_print_node(tmp_node);
+		ft_print_node(nd);
 	}
 }
