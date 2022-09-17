@@ -87,12 +87,14 @@ t_node *ft_pop_node_from_top(t_stack *st)
 {
 	t_node *nd;
 
+	st->nd_count--;
 	if (!st->first_nd)
 		return (NULL);
 	else if (!st->first_nd->next)
 	{
 		nd = st->first_nd;
 		st->first_nd = NULL;
+		st->last_nd = NULL;
 		return (nd);
 	}
 	else
@@ -103,18 +105,19 @@ t_node *ft_pop_node_from_top(t_stack *st)
 		nd->next = NULL;
 		return (nd);
 	}
-	st->nd_count--;
 }
 
 t_node *ft_pop_node_from_bottom(t_stack *st)
 {
 	t_node *nd;
 
+	st->nd_count--;
 	if (!st->last_nd)
 		return (NULL);
 	else if (!st->last_nd->prev)
 	{
 		nd = st->last_nd;;
+		st->first_nd = NULL;
 		st->last_nd = NULL;
 		return (nd);
 	}
@@ -126,7 +129,6 @@ t_node *ft_pop_node_from_bottom(t_stack *st)
 		nd->prev = NULL;
 		return (nd);
 	}
-	st->nd_count--;
 }
 
 void ft_swap_first_nodes_on_stack(t_stack *st)
@@ -138,6 +140,7 @@ void ft_swap_first_nodes_on_stack(t_stack *st)
 	{
 		nd_a = ft_pop_node_from_top(st);
 		nd_b = ft_pop_node_from_top(st);
+		ft_putstr_fd("No probs\n", 1);
 		ft_add_node_on_top(st, nd_a);
 		ft_add_node_on_top(st, nd_b);
 		ft_putstr_fd("s", 1);
