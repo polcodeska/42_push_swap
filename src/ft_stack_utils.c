@@ -30,6 +30,146 @@ void ft_set_new_pos_for_all_nodes_on_stack(t_stack *st)
 	}
 }
 
+int ft_get_pos_of_highest_index_in_stack(t_stack *st)
+{
+	t_node *nd_return;
+	t_node *nd_run;
+
+	nd_return = st->first_nd;
+	nd_run = st->first_nd->next;
+	while (nd_run)
+	{
+		if (nd_run->index > nd_return->index)
+			nd_return = nd_run;
+		nd_run = nd_run->next;
+	}
+	return (nd_return->pos);
+}
+
+t_node *ft_get_cheapest_node(t_stack *st)
+{
+	t_node *nd_return;
+	t_node *nd_run;
+
+	nd_return = st->first_nd;
+	nd_run = st->first_nd->next;
+	while (nd_run)
+	{
+		if (nd_run->total_costs	< nd_return->total_costs)
+			nd_return = nd_run;
+		nd_run = nd_run->next;
+	}
+	return (nd_return);
+}
+
+void ft_execute_operations(t_node *nd, t_stack *st_a, t_stack *st_b)
+{
+	while (nd->cost_a > 0 && nd->cost_b > 0)
+	{
+		ft_rotate_both_stacks(st_a, st_b);
+		nd->cost_a--;
+		nd->cost_b--;
+	}
+	while (nd->cost_a < 0 && nd->cost_b < 0)
+	{
+		ft_reverse_rotate_both_stacks(st_a, st_b);
+		nd->cost_a++;
+		nd->cost_b++;
+	}
+	while (nd->cost_a > 0)
+	{
+		ft_rotate_stack(st_a);
+		nd->cost_a--;
+	}
+	while (nd->cost_a < 0)
+	{
+		ft_reverse_rotate_stack(st_a);
+		nd->cost_a++;
+	}
+	while (nd->cost_b > 0)
+	{
+		ft_rotate_stack(st_b);
+		nd->cost_b--;
+	}
+	while (nd->cost_b < 0)
+	{
+		ft_reverse_rotate_stack(st_b);
+		nd->cost_b++;
+	}
+	ft_push_node_to_other_stack(st_b, st_a);
+}
+
+void ft_set_target_pos_for_nodes(t_stack *st_a, t_stack *st_b)
+{
+	t_node *nd_a;
+	t_node *nd_b;
+
+	nd_b = st_b->first_nd;
+	while (nd_b)
+	{
+		nd_a = st_a->first_nd;
+		while (nd_a)
+		{
+			nd_b->target_pos = ft_get_pos_of_highest_index_in_stack(st_a) + 1;
+			if (nd_b->target_pos == st_a->nd_count)
+				nd_b->target_pos = 0;
+			if (nd_b->index < nd_a->index)
+			{
+				nd_b->target_pos = nd_a->pos;
+				break;
+			}
+			nd_a = nd_a->next;
+		}
+		nd_b = nd_b->next;
+	}
+}
+
+int ft_abs(int value)
+{
+	if (value < 0)
+		return (-value);
+	else
+		return (value);
+}
+
+void ft_set_total_costs(t_stack *st)
+{
+	t_node *nd;
+
+	nd = st->first_nd;
+	while (nd)
+	{
+		if ((nd->cost_a < 0 && nd->cost_b < 0) ||
+				(nd->cost_a > 0 && nd->cost_b > 0))
+			if (ft_abs(nd->cost_a) > ft_abs(nd->cost_b))
+				nd->total_costs = ft_abs(nd->cost_a);
+			else
+				nd->total_costs = ft_abs(nd->cost_b);
+		else
+			nd->total_costs = ft_abs(nd->cost_a) + \
+									ft_abs(nd->cost_b);
+		nd = nd->next;
+	}
+}
+
+void ft_set_costs(t_stack *st_a, t_stack *st_b)
+{
+	t_node *nd;
+
+	nd = st_b->first_nd;
+	while (nd)
+	{
+		nd->cost_b = nd->pos;
+		if (nd->pos > st_b->nd_count / 2)
+			nd->cost_b = nd->cost_b - st_b->nd_count;
+		nd->cost_a = nd->target_pos;
+		if (nd->target_pos > st_a->nd_count / 2)
+			nd->cost_a = nd->cost_a - st_a->nd_count;
+		nd = nd->next;
+	}
+	ft_set_total_costs(st_b);
+}
+
 void ft_set_indexes_for_all_nodes_on_stack(t_stack *st, int *int_arr)
 {
     int i;
@@ -269,5 +409,32 @@ void ft_run_algo_for_three_values(t_stack *st)
 			ft_reverse_rotate_stack(st);
 		else if (nd_a->index > nd_b->index)
 			ft_swap_first_nodes_on_stack(st);
+	}
+}
+
+void ft_run_algo_for_more_than_three_values(t_stack *st_a, t_stack *st_b)
+{
+	t_node *nd;
+
+	while (st_a->nd_count > 3)
+		ft_push_node_to_other_stack(st_a, st_b);
+	ft_run_algo_for_three_values(st_a);
+	while (st_b->nd_count > 0)
+	{
+		ft_set_target_pos_for_nodes(st_a, st_b);
+		ft_set_costs(st_a, st_b);
+		ft_putstr_fd("++++++++++++ Stacks +++++++++++\n", 1);
+		ft_putstr_fd("Stack A\n", 1);
+		ft_print_all_nodes_in_stack(st_a);
+		ft_putstr_fd("Stack B\n", 1);
+		ft_print_all_nodes_in_stack(st_b);
+		ft_putstr_fd("++++++++++++ Stacks End +++++++++++\n", 1);
+		nd = ft_get_cheapest_node(st_b);
+		ft_putstr_fd("++++++++++++ Cheapest Node +++++++++++\n", 1);
+		ft_print_node(nd);
+		ft_putstr_fd("++++++++++++ Cheapest Node End +++++++++++\n", 1);
+		ft_putstr_fd("++++++++++++ Operation +++++++++++\n", 1);
+		ft_execute_operations(nd, st_a, st_b);
+		ft_putstr_fd("++++++++++++ Operation End +++++++++++\n\n", 1);
 	}
 }
