@@ -78,22 +78,22 @@ void ft_execute_operations(t_node *nd, t_stack *st_a, t_stack *st_b)
 	}
 	while (nd->cost_a > 0)
 	{
-		ft_rotate_stack(st_a);
+		ft_rotate_stack(st_a, 1);
 		nd->cost_a--;
 	}
 	while (nd->cost_a < 0)
 	{
-		ft_reverse_rotate_stack(st_a);
+		ft_reverse_rotate_stack(st_a, 1);
 		nd->cost_a++;
 	}
 	while (nd->cost_b > 0)
 	{
-		ft_rotate_stack(st_b);
+		ft_rotate_stack(st_b, 1);
 		nd->cost_b--;
 	}
 	while (nd->cost_b < 0)
 	{
-		ft_reverse_rotate_stack(st_b);
+		ft_reverse_rotate_stack(st_b, 1);
 		nd->cost_b++;
 	}
 	ft_push_node_to_other_stack(st_b, st_a);
@@ -105,10 +105,10 @@ void ft_set_target_pos_for_nodes(t_stack *st_a, t_stack *st_b)
 	t_node *nd_b;
 	int smallest_diff;
 
-	smallest_diff = INT_MAX;
 	nd_b = st_b->first_nd;
 	while (nd_b)
 	{
+		smallest_diff = INT_MAX;
 		nd_a = st_a->first_nd;
 		nd_b->target_pos = ft_get_pos_of_highest_index_in_stack(st_a) + 1;
 		while (nd_a)
@@ -333,39 +333,45 @@ void ft_push_node_to_other_stack(t_stack *st_a, t_stack *st_b)
 		ft_putstr_fd("b\n", 1);
 }
 
-void ft_rotate_stack(t_stack *st)
+void ft_rotate_stack(t_stack *st, int with_output)
 {
 	ft_add_node_on_bottom(st, ft_pop_node_from_top(st));
 	ft_set_new_pos_for_all_nodes_on_stack(st);
-	ft_putstr_fd("r", 1);
-	if (st->id == 0)
-		ft_putstr_fd("a\n", 1);
-	else
-		ft_putstr_fd("b\n", 1);
+	if (with_output)
+	{
+		ft_putstr_fd("r", 1);
+		if (st->id == 0)
+			ft_putstr_fd("a\n", 1);
+		else
+			ft_putstr_fd("b\n", 1);
+	}
 }
 
 void ft_rotate_both_stacks(t_stack *st_a, t_stack *st_b)
 {
-	ft_rotate_stack(st_a);
-	ft_rotate_stack(st_b);
-	ft_putstr_fd("rr\n", 1);
+	ft_rotate_stack(st_a, 0);
+	ft_rotate_stack(st_b, 0);
+	write(1, "rr\n", 4);
 }
 
-void ft_reverse_rotate_stack(t_stack *st)
+void ft_reverse_rotate_stack(t_stack *st, int with_output)
 {
 	ft_add_node_on_top(st, ft_pop_node_from_bottom(st));
 	ft_set_new_pos_for_all_nodes_on_stack(st);
-	ft_putstr_fd("rr", 1);
-	if (st->id == 0)
-		ft_putstr_fd("a\n", 1);
-	else
-		ft_putstr_fd("b\n", 1);
+	if (with_output)
+	{
+		ft_putstr_fd("rr", 1);
+		if (st->id == 0)
+			ft_putstr_fd("a\n", 1);
+		else
+			ft_putstr_fd("b\n", 1);
+	}
 }
 
 void ft_reverse_rotate_both_stacks(t_stack *st_a, t_stack *st_b)
 {
-	ft_reverse_rotate_stack(st_a);
-	ft_reverse_rotate_stack(st_b);
+	ft_reverse_rotate_stack(st_a, 0);
+	ft_reverse_rotate_stack(st_b, 0);
 	ft_putstr_fd("rrr\n", 1);
 }
 
@@ -406,10 +412,10 @@ void ft_run_algo_for_three_values(t_stack *st)
 		nd_c = st->last_nd;
 		if (nd_a->index > nd_b->index &&
 				nd_a->index > nd_c->index)
-			ft_rotate_stack(st);
+			ft_rotate_stack(st, 1);
 		else if (nd_b->index > nd_a->index &&
 				nd_b->index > nd_c->index)
-			ft_reverse_rotate_stack(st);
+			ft_reverse_rotate_stack(st, 1);
 		else if (nd_a->index > nd_b->index)
 			ft_swap_first_nodes_on_stack(st);
 	}
@@ -440,4 +446,9 @@ void ft_run_algo_for_more_than_three_values(t_stack *st_a, t_stack *st_b)
 		ft_execute_operations(nd, st_a, st_b);
 		/* ft_putstr_fd("++++++++++++ Operation End +++++++++++\n\n", 1); */
 	}
+	while (st_a->first_nd->index < ((st_a->nd_count / 2) + 1) &&
+			!ft_is_stack_sorted(st_a, ft_is_in_asc_order))
+		ft_reverse_rotate_stack(st_a, 1);
+	while (!ft_is_stack_sorted(st_a, ft_is_in_asc_order))
+		ft_rotate_stack(st_a, 1);
 }
