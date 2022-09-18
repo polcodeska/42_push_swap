@@ -103,20 +103,23 @@ void ft_set_target_pos_for_nodes(t_stack *st_a, t_stack *st_b)
 {
 	t_node *nd_a;
 	t_node *nd_b;
+	int smallest_diff;
 
+	smallest_diff = INT_MAX;
 	nd_b = st_b->first_nd;
 	while (nd_b)
 	{
 		nd_a = st_a->first_nd;
+		nd_b->target_pos = ft_get_pos_of_highest_index_in_stack(st_a) + 1;
 		while (nd_a)
 		{
-			nd_b->target_pos = ft_get_pos_of_highest_index_in_stack(st_a) + 1;
 			if (nd_b->target_pos == st_a->nd_count)
 				nd_b->target_pos = 0;
-			if (nd_b->index < nd_a->index)
+			if (nd_b->index < nd_a->index &&
+					((nd_a->index - nd_b->index) < smallest_diff))
 			{
+				smallest_diff = nd_a->index - nd_b->index;
 				nd_b->target_pos = nd_a->pos;
-				break;
 			}
 			nd_a = nd_a->next;
 		}
@@ -423,18 +426,18 @@ void ft_run_algo_for_more_than_three_values(t_stack *st_a, t_stack *st_b)
 	{
 		ft_set_target_pos_for_nodes(st_a, st_b);
 		ft_set_costs(st_a, st_b);
-		ft_putstr_fd("++++++++++++ Stacks +++++++++++\n", 1);
-		ft_putstr_fd("Stack A\n", 1);
-		ft_print_all_nodes_in_stack(st_a);
-		ft_putstr_fd("Stack B\n", 1);
-		ft_print_all_nodes_in_stack(st_b);
-		ft_putstr_fd("++++++++++++ Stacks End +++++++++++\n", 1);
+		/* ft_putstr_fd("++++++++++++ Stacks +++++++++++\n", 1); */
+		/* ft_putstr_fd("Stack A --------------------------------\n", 1); */
+		/* ft_print_all_nodes_in_stack(st_a); */
+		/* ft_putstr_fd("Stack B --------------------------------\n", 1); */
+		/* ft_print_all_nodes_in_stack(st_b); */
+		/* ft_putstr_fd("++++++++++++ Stacks End +++++++++++\n", 1); */
 		nd = ft_get_cheapest_node(st_b);
-		ft_putstr_fd("++++++++++++ Cheapest Node +++++++++++\n", 1);
-		ft_print_node(nd);
-		ft_putstr_fd("++++++++++++ Cheapest Node End +++++++++++\n", 1);
-		ft_putstr_fd("++++++++++++ Operation +++++++++++\n", 1);
+		/* ft_putstr_fd("++++++++++++ Cheapest Node +++++++++++\n", 1); */
+		/* ft_print_node(nd); */
+		/* ft_putstr_fd("++++++++++++ Cheapest Node End +++++++++++\n", 1); */
+		/* ft_putstr_fd("++++++++++++ Operation +++++++++++\n", 1); */
 		ft_execute_operations(nd, st_a, st_b);
-		ft_putstr_fd("++++++++++++ Operation End +++++++++++\n\n", 1);
+		/* ft_putstr_fd("++++++++++++ Operation End +++++++++++\n\n", 1); */
 	}
 }

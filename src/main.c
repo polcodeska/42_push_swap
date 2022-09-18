@@ -38,10 +38,10 @@ void ft_push_swap(char **clean_argv, t_stack *st_a, t_stack *st_b)
 			ft_run_algo_for_three_values(st_a);
 		else
 			ft_run_algo_for_more_than_three_values(st_a, st_b);
-		printf("------------------ Stack A:\n");
-		ft_print_all_nodes_in_stack(st_a);
-		printf("------------------ Stack B:\n");
-		ft_print_all_nodes_in_stack(st_b);
+		/* printf("------------------ Stack A:\n"); */
+		/* ft_print_all_nodes_in_stack(st_a); */
+		/* printf("------------------ Stack B:\n"); */
+		/* ft_print_all_nodes_in_stack(st_b); */
 	}
 }
 
