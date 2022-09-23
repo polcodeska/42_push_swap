@@ -6,7 +6,7 @@
 /*   By: guy <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:38:55 by guy               #+#    #+#             */
-/*   Updated: 2022/09/22 19:03:03 by guy              ###   ########.fr       */
+/*   Updated: 2022/09/23 13:32:52 by tmasur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,20 @@ void	ft_set_costs(t_stack *st_a, t_stack *st_b)
 		nd = nd->next;
 	}
 	ft_set_total_costs(st_b);
+}
+
+void	ft_free_all_nodes_in_stack(t_stack *st)
+{
+	t_node	*nd;
+
+	if (st->last_nd)
+	{
+		while (st->last_nd->prev)
+		{
+			nd = st->last_nd->prev;
+			free(st->last_nd);
+			st->last_nd = nd;
+		}
+	}
+	free(st->last_nd);
 }

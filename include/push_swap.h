@@ -6,7 +6,7 @@
 /*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:38:20 by tmasur            #+#    #+#             */
-/*   Updated: 2022/09/23 13:19:22 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/09/23 13:33:27 by tmasur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	ft_set_new_pos_for_all_nodes_on_stack(t_stack *st);
 void	ft_set_indexes_for_all_nodes_on_stack(t_stack *st, int *int_arr);
 void	ft_set_target_pos_for_nodes(t_stack *st_a, t_stack *st_b);
 void	ft_set_costs(t_stack *st_a, t_stack *st_b);
+void	ft_free_all_nodes_in_stack(t_stack *st);
 
 // ft_stack_utils_4.c
 int		ft_get_pos_of_highest_index_in_stack(t_stack *st);

@@ -6,7 +6,7 @@
 /*   By: guy <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:38:19 by guy               #+#    #+#             */
-/*   Updated: 2022/09/22 19:57:36 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/09/23 13:34:14 by tmasur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	else
 		clean_argv = &argv[1];
 	ft_push_swap(clean_argv, &st_a, &st_b);
+	ft_free_all_nodes_in_stack(&st_a);
 	return (0);
 }
 
