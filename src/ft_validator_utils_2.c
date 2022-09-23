@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_validator_utils_2.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guy <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/22 17:38:26 by guy               #+#    #+#             */
+/*   Updated: 2022/09/22 17:45:09 by guy              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
-long ft_atol(char *str)
+long	ft_atol(char *str)
 {
 	long	value;
 	int		sign;
@@ -16,20 +28,20 @@ long ft_atol(char *str)
 	return (sign * value);
 }
 
-int ft_is_argument_a_number(char *clean_argv)
+int	ft_is_argument_a_number(char *clean_argv)
 {
-    if (*clean_argv == '-' || *clean_argv == '+')
-        clean_argv++;
-    while (*clean_argv)
-    {
-        if (!ft_isdigit(*clean_argv))
-            return (0);
+	if (*clean_argv == '-' || *clean_argv == '+')
 		clean_argv++;
-    }
-    return (1);
+	while (*clean_argv)
+	{
+		if (!ft_isdigit(*clean_argv))
+			return (0);
+		clean_argv++;
+	}
+	return (1);
 }
 
-int ft_are_all_arguments_numbers(char **clean_argv)
+int	ft_are_all_arguments_numbers(char **clean_argv)
 {
 	while (*clean_argv)
 	{
@@ -40,9 +52,9 @@ int ft_are_all_arguments_numbers(char **clean_argv)
 	return (1);
 }
 
-int ft_are_all_arguments_integer(char **clean_argv)
+int	ft_are_all_arguments_integer(char **clean_argv)
 {
-	long arg;
+	long	arg;
 
 	while (*clean_argv)
 	{

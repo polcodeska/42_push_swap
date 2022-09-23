@@ -1,55 +1,77 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort_values.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 12:12:03 by tmasur            #+#    #+#             */
+/*   Updated: 2022/09/23 12:35:59 by tmasur           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
-static void ft_merge(int arr[], int l, int m, int r);
-
-void ft_merge(int arr[], int l, int m, int r)
+void	ft_merge_sort(int arr[], int left, int right)
 {
-    int i, j, k;
-    int n1 = m - l + 1;
-    int n2 = r - m;
-    int L[n1], R[n2];
-    for (i = 0; i < n1; i++)
-        L[i] = arr[l + i];
-    for (j = 0; j < n2; j++)
-        R[j] = arr[m + 1 + j];
-    i = 0;
-    j = 0;
-    k = l;
-    while (i < n1 && j < n2)
-    {
-        if (L[i] <= R[j])
-        {
-            arr[k] = L[i];
-            i++;
-        }
-        else
-        {
-            arr[k] = R[j];
-            j++;
-        }
-        k++;
-    }
-    while (i < n1)
-    {
-        arr[k] = L[i];
-        i++;
-        k++;
-    }
-    while (j < n2)
-    {
-        arr[k] = R[j];
-        j++;
-        k++;
-    }
+	int	mid;
+
+	if (left < right)
+	{
+		mid = (right - left) / 2 + left;
+		ft_merge_sort(arr, left, mid);
+		ft_merge_sort(arr, mid + 1, right);
+		ft_merge_sort_algorithm(arr, left, mid, right);
+	}
 }
 
-void ft_merge_sort(int arr[], int l, int r)
+int	*ft_get_sub_arr(int arr[], int start, int len)
 {
-    if (l < r)
-    {
-        int m = l + (r - l) / 2;
-        ft_merge_sort(arr, l, m);
-        ft_merge_sort(arr, m + 1, r);
-        ft_merge(arr, l, m, r);
-    }
+	int	i;
+	int	j;
+	int	*arr_sub;
+
+	arr_sub = malloc (sizeof(*arr_sub) * len);
+	i = 0;
+	j = start;
+	while (i < len)
+	{
+		arr_sub[i] = arr[j];
+		i++;
+		j++;
+	}
+	return (arr_sub);
+}
+
+void	ft_set_small_value(int arr[], int pos, int value)
+{
+	arr[pos] = value;
+}
+
+void	ft_merge_sort_algorithm(int arr[], int left, int mid, int right)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	*arr_l;
+	int	*arr_r;
+
+	arr_l = ft_get_sub_arr(arr, left, mid - left + 1);
+	arr_r = ft_get_sub_arr(arr, mid + 1, right - mid);
+	i = 0;
+	j = 0;
+	k = left;
+	while (i < (mid - left + 1) && j < (right - mid))
+	{
+		if (arr_l[i] < arr_r[j])
+			ft_set_small_value(arr, k++, arr_l[i++]);
+		else
+			ft_set_small_value(arr, k++, arr_r[j++]);
+	}
+	while (i < (mid - left + 1))
+		ft_set_small_value(arr, k++, arr_l[i++]);
+	while (j < (right - mid))
+		ft_set_small_value(arr, k++, arr_r[j++]);
+	free(arr_l);
+	free(arr_r);
 }

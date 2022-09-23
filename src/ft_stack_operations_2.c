@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stack_operations_2.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guy <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/22 17:39:23 by guy               #+#    #+#             */
+/*   Updated: 2022/09/22 19:34:27 by guy              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
-void ft_swap_first_nodes_on_stack(t_stack *st)
+void	ft_swap_first_nodes_on_stack(t_stack *st)
 {
-    t_node *nd_a;
-    t_node *nd_b;
+	t_node	*nd_a;
+	t_node	*nd_b;
 
 	if (st->nd_count > 1)
 	{
@@ -20,8 +32,7 @@ void ft_swap_first_nodes_on_stack(t_stack *st)
 	}
 }
 
-
-void ft_rotate_stack(t_stack *st, int with_output)
+void	ft_rotate_stack(t_stack *st, int with_output)
 {
 	ft_add_node_on_bottom(st, ft_pop_node_from_top(st));
 	ft_set_new_pos_for_all_nodes_on_stack(st);
@@ -35,14 +46,14 @@ void ft_rotate_stack(t_stack *st, int with_output)
 	}
 }
 
-void ft_rotate_both_stacks(t_stack *st_a, t_stack *st_b)
+void	ft_rotate_both_stacks(t_stack *st_a, t_stack *st_b)
 {
 	ft_rotate_stack(st_a, 0);
 	ft_rotate_stack(st_b, 0);
 	ft_putstr_fd("rr\n", 1);
 }
 
-void ft_reverse_rotate_stack(t_stack *st, int with_output)
+void	ft_reverse_rotate_stack(t_stack *st, int with_output)
 {
 	ft_add_node_on_top(st, ft_pop_node_from_bottom(st));
 	ft_set_new_pos_for_all_nodes_on_stack(st);
@@ -56,7 +67,7 @@ void ft_reverse_rotate_stack(t_stack *st, int with_output)
 	}
 }
 
-void ft_reverse_rotate_both_stacks(t_stack *st_a, t_stack *st_b)
+void	ft_reverse_rotate_both_stacks(t_stack *st_a, t_stack *st_b)
 {
 	ft_reverse_rotate_stack(st_a, 0);
 	ft_reverse_rotate_stack(st_b, 0);

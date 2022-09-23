@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stack_utils_1.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guy <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/22 17:39:17 by guy               #+#    #+#             */
+/*   Updated: 2022/09/22 19:32:14 by guy              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
-void ft_init_nd(t_node *nd, int value, int pos)
+void	ft_init_nd(t_node *nd, int value, int pos)
 {
-    nd->value = value;
+	nd->value = value;
 	nd->pos = pos;
-    nd->index = 0;
+	nd->index = 0;
 	nd->target_pos = 0;
 	nd->cost_a = 0;
 	nd->cost_b = 0;
@@ -12,9 +24,9 @@ void ft_init_nd(t_node *nd, int value, int pos)
 	nd->next = NULL;
 }
 
-void ft_init_stacks(t_stack *st_a, t_stack *st_b)
+void	ft_init_stacks(t_stack *st_a, t_stack *st_b)
 {
-    st_a->id = 0;
+	st_a->id = 0;
 	st_a->nd_count = 0;
 	st_a->first_nd = NULL;
 	st_a->last_nd = NULL;
@@ -24,17 +36,17 @@ void ft_init_stacks(t_stack *st_a, t_stack *st_b)
 	st_b->last_nd = NULL;
 }
 
-void ft_fill_stack_on_start(t_stack *st, char **clean_argv)
+void	ft_fill_stack_on_start(t_stack *st, char **clean_argv)
 {
-	int *int_arr;
-	int i;
-	t_node *nd;
+	int		*int_arr;
+	int		i;
+	t_node	*nd;
 
 	int_arr = ft_parse_argv_to_int_array(clean_argv);
 	i = 0;
 	while (clean_argv[i])
 	{
-		nd = malloc(sizeof *nd);
+		nd = malloc(sizeof(*nd));
 		ft_init_nd(nd, int_arr[i], i);
 		ft_add_node_on_bottom(st, nd);
 		i++;
