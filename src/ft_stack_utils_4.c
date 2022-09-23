@@ -6,7 +6,7 @@
 /*   By: guy <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:38:41 by guy               #+#    #+#             */
-/*   Updated: 2022/09/23 13:09:31 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/09/23 13:19:02 by tmasur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,7 @@ t_node	*ft_get_cheapest_node(t_stack *st)
 	return (nd_return);
 }
 
-void	ft_execute_rotation_both_stack(t_node *nd, t_stack *st_a, t_stack *st_b)
-{
-	while (nd->cost_a > 0 && nd->cost_b > 0)
-	{
-		ft_rotate_both_stacks(st_a, st_b);
-		nd->cost_a--;
-		nd->cost_b--;
-	}
-	while (nd->cost_a < 0 && nd->cost_b < 0)
-	{
-		ft_reverse_rotate_both_stacks(st_a, st_b);
-		nd->cost_a++;
-		nd->cost_b++;
-	}
-}
-
-void	ft_execute_rotation_one_stack(t_node *nd, t_stack *st_a, t_stack *st_b)
+void	ft_exec_rotation_one_stack(t_node *nd, t_stack *st_a, t_stack *st_b)
 {
 	while (nd->cost_a > 0)
 	{
@@ -84,9 +68,25 @@ void	ft_execute_rotation_one_stack(t_node *nd, t_stack *st_a, t_stack *st_b)
 	}
 }
 
+void	ft_exec_rotation_both_stack(t_node *nd, t_stack *st_a, t_stack *st_b)
+{
+	while (nd->cost_a > 0 && nd->cost_b > 0)
+	{
+		ft_rotate_both_stacks(st_a, st_b);
+		nd->cost_a--;
+		nd->cost_b--;
+	}
+	while (nd->cost_a < 0 && nd->cost_b < 0)
+	{
+		ft_reverse_rotate_both_stacks(st_a, st_b);
+		nd->cost_a++;
+		nd->cost_b++;
+	}
+}
+
 void	ft_execute_operations(t_node *nd, t_stack *st_a, t_stack *st_b)
 {
-	ft_execute_rotation_both_stack(nd, st_a, st_b);
-	ft_execute_rotation_one_stack(nd, st_a, st_b);
+	ft_exec_rotation_both_stack(nd, st_a, st_b);
+	ft_exec_rotation_one_stack(nd, st_a, st_b);
 	ft_push_node_to_other_stack(st_b, st_a);
 }

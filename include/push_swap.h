@@ -6,7 +6,7 @@
 /*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:38:20 by tmasur            #+#    #+#             */
-/*   Updated: 2022/09/23 12:47:03 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/09/23 13:19:22 by tmasur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,6 @@ void	ft_set_costs(t_stack *st_a, t_stack *st_b);
 int		ft_get_pos_of_highest_index_in_stack(t_stack *st);
 t_node	*ft_get_cheapest_node(t_stack *st);
 void	ft_execute_operations(t_node *nd, t_stack *st_a, t_stack *st_b);
+void	ft_exec_rotation_one_stack(t_node *nd, t_stack *st_a, t_stack *st_b);
+void	ft_exec_rotation_both_stack(t_node *nd, t_stack *st_a, t_stack *st_b);
 #endif

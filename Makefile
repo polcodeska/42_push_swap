@@ -19,7 +19,7 @@ OBJ		:=	$(addprefix $(OBJ_DIR), $(FILES:.c=.o))
 
 # Compiler ---------------------------------------------------------------------
 CC			:=	gcc
-DEBUG		:=	yes
+DEBUG		:=	no
 ifeq ($(DEBUG), yes)
 FLAG		:=	-g -W
 else
