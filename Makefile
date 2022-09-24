@@ -14,7 +14,6 @@ FILES	:=	ft_sort_values.c ft_sort_push_swap.c ft_validator_utils_1.c \
 			ft_validator_utils_2.c ft_stack_utils_1.c ft_stack_utils_2.c \
 			ft_stack_utils_3.c ft_stack_utils_4.c ft_stack_operations_1.c \
 			ft_stack_operations_2.c main.c
-SRC		:=	$(addprefix $(SRC_DIR), $(FILES))
 OBJ		:=	$(addprefix $(OBJ_DIR), $(FILES:.c=.o))
 
 # Compiler ---------------------------------------------------------------------
