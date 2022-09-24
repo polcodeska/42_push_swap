@@ -64,4 +64,4 @@ fclean: clean
 re: fclean all
 
 # PHONY ------------------------------------------------------------------------
-.PHONY: clean, all, fclean, re, debug
+.PHONY: clean, all, fclean, re
