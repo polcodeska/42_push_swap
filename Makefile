@@ -6,7 +6,7 @@
 #    By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 14:29:44 by tmasur            #+#    #+#              #
-#    Updated: 2022/09/26 14:29:50 by tmasur           ###   ########.fr        #
+#    Updated: 2022/09/26 14:49:11 by tmasur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ FILES	:=	ft_sort_values.c ft_sort_push_swap.c ft_validator_utils_1.c \
 			ft_validator_utils_2.c ft_stack_utils_1.c ft_stack_utils_2.c \
 			ft_stack_utils_3.c ft_stack_utils_4.c ft_stack_operations_1.c \
 			ft_stack_operations_2.c main.c
-SRC		:=	$(addprefix $(SRC_DIR), $(FILES))
 OBJ		:=	$(addprefix $(OBJ_DIR), $(FILES:.c=.o))
 
 # Compiler ---------------------------------------------------------------------
