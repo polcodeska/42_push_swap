@@ -6,7 +6,7 @@
 /*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:38:20 by tmasur            #+#    #+#             */
-/*   Updated: 2022/09/23 13:33:27 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/09/28 08:03:35 by guy              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_run_algo_for_more_than_three_values(t_stack *st_a, t_stack *st_b);
 
 //ft_stack_utils_2.c
 void	ft_set_total_costs(t_stack *st);
+int		ft_abs(int value);
 int		ft_is_in_asc_order(int a, int b);
 int		ft_is_in_desc_order(int a, int b);
 int		ft_is_stack_sorted(t_stack *st, int (*ft_sort_order)(int, int));

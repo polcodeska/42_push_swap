@@ -6,13 +6,11 @@
 /*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:27:43 by tmasur            #+#    #+#             */
-/*   Updated: 2022/09/26 14:27:45 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/09/28 08:03:54 by guy              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-static int	ft_abs(int value);
 
 void	ft_set_total_costs(t_stack *st)
 {

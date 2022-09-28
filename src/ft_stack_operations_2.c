@@ -6,7 +6,7 @@
 /*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:26:59 by tmasur            #+#    #+#             */
-/*   Updated: 2022/09/26 14:27:03 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/09/28 07:58:05 by guy              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	ft_swap_first_nodes_on_stack(t_stack *st)
 {
-	t_node	*nd_a;
-	t_node	*nd_b;
+	t_node	*nd_first;
+	t_node	*nd_second;
 
 	if (st->nd_count > 1)
 	{
-		nd_a = ft_pop_node_from_top(st);
-		nd_b = ft_pop_node_from_top(st);
-		ft_add_node_on_top(st, nd_a);
-		ft_add_node_on_top(st, nd_b);
+		nd_first = ft_pop_node_from_top(st);
+		nd_second = ft_pop_node_from_top(st);
+		ft_add_node_on_top(st, nd_first);
+		ft_add_node_on_top(st, nd_second);
 		ft_putstr_fd("s", 1);
 		if (st->id == 0)
 			ft_putstr_fd("a\n", 1);
