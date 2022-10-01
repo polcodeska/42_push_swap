@@ -6,7 +6,7 @@
 #    By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 14:29:44 by tmasur            #+#    #+#              #
-#    Updated: 2022/10/01 16:37:23 by tmasur           ###   ########.fr        #
+#    Updated: 2022/10/01 16:43:29 by tmasur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,4 +75,4 @@ fclean: clean
 re: fclean all
 
 # PHONY ------------------------------------------------------------------------
-.PHONY: clean, all, fclean, re, debug
+.PHONY: clean, all, fclean, re
