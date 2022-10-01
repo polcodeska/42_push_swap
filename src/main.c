@@ -6,7 +6,7 @@
 /*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:29:20 by tmasur            #+#    #+#             */
-/*   Updated: 2022/09/26 14:29:24 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/10/01 16:26:22 by tmasur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 	else
 		clean_argv = &argv[1];
 	ft_push_swap(clean_argv, &st_a, &st_b);
-	ft_free_all_nodes_in_stack(&st_a);
 	return (0);
 }
 
@@ -43,5 +42,6 @@ void	ft_push_swap(char **clean_argv, t_stack *st_a, t_stack *st_b)
 			ft_run_algo_for_three_values(st_a);
 		else
 			ft_run_algo_for_more_than_three_values(st_a, st_b);
+		ft_free_all_nodes_in_stack(st_a);
 	}
 }

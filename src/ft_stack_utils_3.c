@@ -6,7 +6,7 @@
 /*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:28:10 by tmasur            #+#    #+#             */
-/*   Updated: 2022/09/26 14:28:12 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/10/01 16:22:15 by tmasur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_set_indexes_for_all_nodes_on_stack(t_stack *st, int *int_arr)
 		nd = nd->next;
 		i++;
 	}
+	free(int_arr);
 }
 
 void	ft_set_target_pos_for_nodes(t_stack *st_a, t_stack *st_b)
