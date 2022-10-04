@@ -6,7 +6,7 @@
 /*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:29:20 by tmasur            #+#    #+#             */
-/*   Updated: 2022/10/01 16:26:22 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/10/04 15:38:29 by tmasur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void	ft_push_swap(char **clean_argv, t_stack *st_a, t_stack *st_b)
 		ft_init_stacks(st_a, st_b);
 		ft_fill_stack_on_start(st_a, clean_argv);
 		if (ft_is_stack_sorted(st_a, ft_is_in_asc_order))
+		{
+			ft_free_all_nodes_in_stack(st_a);
 			return ;
+		}
 		if (st_a->nd_count == 2)
 			ft_swap_first_nodes_on_stack(st_a);
 		else if (st_a->nd_count == 3)
