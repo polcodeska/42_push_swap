@@ -36,7 +36,7 @@ void	ft_init_stacks(t_stack *st_a, t_stack *st_b)
 	st_b->last_nd = NULL;
 }
 
-void	ft_fill_stack_on_start(t_stack *st, char **clean_argv)
+void	ft_fill_stack_on_start(t_stack *st, char **clean_argv, int is_arg_str)
 {
 	int		*int_arr;
 	int		i;
@@ -52,4 +52,9 @@ void	ft_fill_stack_on_start(t_stack *st, char **clean_argv)
 		i++;
 	}
 	ft_set_indexes_for_all_nodes_on_stack(st, int_arr);
+	if (is_arg_str)
+	{
+		while (*clean_argv)
+			free(*clean_argv++);
+	}
 }

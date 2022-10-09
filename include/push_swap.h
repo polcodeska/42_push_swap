@@ -6,7 +6,7 @@
 /*   By: tmasur <tmasur@mail.de>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:38:20 by tmasur            #+#    #+#             */
-/*   Updated: 2022/10/01 16:44:17 by tmasur           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:44:32 by tmasur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	ft_merge_sort(int arr[], int left, int right);
 void	ft_merge_sort_algorithm(int arr[], int left, int mid, int right);
 
 // main.c
-void	ft_push_swap(char **clean_argv, t_stack *st_a, t_stack *st_b);
+void	ft_push_swap(char **clean_argv, t_stack *st_a, t_stack *st_b, \
+		int is_arg_str);
 
 // ft_validator_utils_1.c
 int		ft_arguments_valid(char **clear_argv);
@@ -59,7 +60,7 @@ int		ft_are_all_arguments_integer(char **clean_argv);
 // ft_stack_utils.c
 void	ft_init_nd(t_node *nd, int value, int pos);
 void	ft_init_stacks(t_stack *st_a, t_stack *st_b);
-void	ft_fill_stack_on_start(t_stack *st, char **clean_argv);
+void	ft_fill_stack_on_start(t_stack *st, char **clean_argv, int is_arg_str);
 
 // ft_stack_operations_1.c
 void	ft_add_node_on_top(t_stack *st, t_node *nd);
