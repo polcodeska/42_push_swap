@@ -50,12 +50,12 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
 	@$(CC) $(OBJ) -o $@ $(LIBFT)
-	@echo $(SUCCESS) "PUSH_SWAP >>> $(NAME) created" $(RESET_COLOR)
+	@echo $(SUCCESS) "PUSH_SWAP [create] : $(NAME)" $(RESET_COLOR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(FLAG) -c $< -o $@
-	@echo $(CREATE) "PUSH_SWAP >>> $@ created" $(RESET_COLOR)
+	@echo $(CREATE) "PUSH_SWAP [create] : $@" $(RESET_COLOR)
 
 $(LIBFT):
 	@make --no-print-directory -C $(LIBFT_DIR)
@@ -68,8 +68,8 @@ clean:
 fclean: clean
 	@make --no-print-directory fclean -C $(LIBFT_DIR)
 	@rm -f $(NAME)
-	@echo $(DELETE) "PUSH_SWAP >>> $(NAME) deleted" $(RESET_COLOR)
-	@echo $(DELETE) "PUSH_SWAP >>> $(OBJ_DIR) deleted" $(RESET_COLOR)
+	@echo $(DELETE) "PUSH_SWAP [delete] : $(NAME)" $(RESET_COLOR)
+	@echo $(DELETE) "PUSH_SWAP [delete] : $(OBJ_DIR)*" $(RESET_COLOR)
 
 # Recompile --------------------------------------------------------------------
 re: fclean all
